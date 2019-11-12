@@ -93,8 +93,8 @@ function processLastItem( stringList, callback) {
  * should return 1000.
 */
 function processSum(numberList, callback) {
-  const sum= numberList.sum
- return callback(sum)
+  const sum= numberList [numberList.reduce]
+ return callback(processSum)
 }
 
 /**
@@ -186,8 +186,11 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  let fullNames = [];
+  runners.forEach(runner =>{
+    fullNames.push (`${runner.first_name} ${runner.last_name}`);
+  });
 }
 
 /**
@@ -219,8 +222,12 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
+function getRunnersByTShirtSize(runners, tShirtSize) {
   /* CODE HERE */
+   var runnerSizes = runners.filter((tShirtSize) => {
+    return tShirtSize == runners.tShirt_size;
+  })
+  return runnerSizes;
 }
 
 /**
