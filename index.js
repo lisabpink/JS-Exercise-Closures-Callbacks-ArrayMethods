@@ -187,10 +187,11 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
 function getFullNames(runners) {
-  let fullNames = [];
+  let getFullNames = [];
   runners.forEach(runner =>{
-    fullNames.push (`${runner.first_name} ${runner.last_name}`);
+    getFullNames.push (`${runner.first_name} ${runner.last_name}`);
   });
+  return getFullNames
 }
 
 /**
