@@ -93,11 +93,16 @@ function processLastItem( stringList, callback) {
  * should return 1000.
 */
 function processSum(numberList, callback) {
-  return callback(numberList.reduce(sum, 0));
 
-  function sum(a, b){
-    return a + b;
-  }
+  const sum = numberList.reduce((acu, currentValue)=> acu + currentValue, 0)
+  return (callback(sum));
+
+
+  // return callback(numberList.reduce(sum, 0));
+
+  // function sum(a, b){
+  //   return a + b;
+  // }
 }
 
 /**
@@ -229,9 +234,16 @@ function firstNamesAllCaps(runners) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(runners, tShirtSize) {
-  return runners.filter(x => x.shirt_size === tShirtSize);
+
+function getRunnersByTShirtSize(runners, size){
+  const runnersByTShirtSize = []
+  runners.map((runner)=> runner.shirt_size === size && runnersByTShirtSize.push(runner))
+  return runnersByTShirtSize
 }
+// function getRunnersByTShirtSize(runners, tShirtSize) {
+//   return runners.filter(shirt => shirt.shirt_size === tShirtSize);
+// }
+// console.log(getRunnersByTShirtSize)
 
 
 /**
@@ -244,13 +256,21 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(runners) {
-  return runners.reduce((total, array) => {
-    return total + array.donation;
-  }, 0);
+// function tallyUpDonations(runners) {
+//   return runners.reduce((total, array) => {
+//     return total + array.donation;
+//   }, 0);
  
- }
-
+//  }
+ function tallyUpDonations(runners) {
+   const totalDonations = []
+  
+    runners.map(runner => totalDonations.push(runner.donation))
+    console.log(totalDonations)
+     return totalDonations.reduce((acc, currentValue) => acc + currentValue, 0)
+     
+    } 
+    console.log(tallyUpDonations);
 /////////////// CLOSURES ///////////////
 /////////////// CLOSURES ///////////////
 
@@ -269,12 +289,16 @@ function tallyUpDonations(runners) {
 */
 function counterMaker() {
   // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = 0;
+  return function counter() {
+    count = count++
+    return count++;
   }
   // BROKEN CODE ENDS
+return counterMaker();
+
 }
+const newCounter = counterMaker();
 
 /**
  * ### Challenge `counterMakerWithLimit`
